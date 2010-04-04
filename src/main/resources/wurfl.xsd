@@ -1,610 +1,609 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.lucaya.net/wurfl" 
-	
-	xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:wfl="http://www.lucaya.net/wurfl" 
-	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
-    jaxb:version="2.0"
-	elementFormDefault="unqualified" 
-	attributeFormDefault="unqualified">
+<?xml version="1.0" ?>
+<xsd:schema 
+	targetNamespace="http://www.lucaya.net/wurfl" 
+	elementFormDefault="qualified"  
+	xmlns="http://www.lucaya.net/wurfl"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+	jaxb:version="2.0" >
 
-	<annotation>
-	  <appinfo>
+	<xsd:annotation>
+	  <xsd:appinfo>
 	    <jaxb:schemaBindings>
-	      <jaxb:package name="net.lucaya.jeemobile.wurfl.jaxb"/>
+	      <jaxb:package name="net.lucaya.jeemobile.wurfl.jaxb" />
 	    </jaxb:schemaBindings>
-	  </appinfo>
-	</annotation>
+	  </xsd:appinfo>
+	</xsd:annotation>
 
 	<!-- Root element -->
-	<element name="wurfl">
-		<complexType>
-			<sequence>
-				<element name="version" type="wfl:versionType" minOccurs="1" maxOccurs="1" />
-				<element name="devices" type="wfl:devicesType" minOccurs="1" maxOccurs="1" />
-			</sequence>
-		</complexType>
-	</element>
+	<xsd:element name="wurfl">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="version" type="versionType" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="devices" type="devicesType" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
 	
 	<!-- Patch file root element -->
-	<element name="wurfl_patch">
-		<complexType>
-			<sequence>
-				<element name="devices" type="wfl:devicesType" minOccurs="1" maxOccurs="1" />
-			</sequence>
-		</complexType>
-	</element>
+	<xsd:element name="wurfl_patch">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="devices" type="devicesType" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
 
 	<!-- Type for device capabilties -->
-	<complexType name="versionType">
-		<sequence>
-			<element name="ver" type="string" minOccurs="1" maxOccurs="1" />
-			<element name="last_updated" type="date" minOccurs="1" maxOccurs="1" />
-			<element name="official_url" type="anyURI" minOccurs="1" maxOccurs="1" />
-			<element name="maintainers" type="wfl:maintainersType" minOccurs="0" maxOccurs="1" />
-			<element name="authors" type="wfl:authorsType" minOccurs="0" maxOccurs="1" />
-			<element name="contributors" type="wfl:contributorsType" minOccurs="0" maxOccurs="1" />
-			<element name="statement" type="string" minOccurs="0" maxOccurs="1" />
-		</sequence>
-	</complexType>
+	<xsd:complexType name="versionType">
+		<xsd:sequence>
+			<xsd:element name="ver" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="last_updated" type="xsd:date" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="official_url" type="xsd:anyURI" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="maintainers" type="maintainersType" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="authors" type="authorsType" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="contributors" type="contributorsType" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="statement" type="xsd:string" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
 
-	<complexType name="devicesType">
-		<sequence>
-			<element name="device" minOccurs="1" maxOccurs="unbounded">
-				<complexType>
-					<sequence>
-						<element name="group" type="wfl:groupType" minOccurs="0" maxOccurs="unbounded"/>
-					</sequence>
-					<attribute name="fall_back" type="string" />
-					<attribute name="actual_device_root" type="boolean" use="optional" />
-					<attribute name="id" type="string" />
-					<attribute name="user_agent" type="string" use="required"/>
-				</complexType>
-			</element>
-		</sequence>
-	</complexType>
+	<xsd:complexType name="devicesType">
+		<xsd:sequence>
+			<xsd:element name="device" minOccurs="1" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="group" type="groupType" minOccurs="0" maxOccurs="unbounded" />
+					</xsd:sequence>
+					<xsd:attribute name="fall_back" type="xsd:string" />
+					<xsd:attribute name="actual_device_root" type="xsd:boolean" use="optional" />
+					<xsd:attribute name="id" type="xsd:string" />
+					<xsd:attribute name="user_agent" type="xsd:string" use="required" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
 
-	<complexType name="groupType">
-		<sequence>
-			<element name="capability" type="wfl:capabilityType" minOccurs="1" maxOccurs="unbounded"/>
-		</sequence>
-		<attribute name="id" type="wfl:groupIds" use="required"/>
-	</complexType>
+	<xsd:complexType name="groupType">
+		<xsd:sequence>
+			<xsd:element name="capability" type="capabilityType" minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="id" type="groupIds" use="required" />
+	</xsd:complexType>
 
-	<complexType name="capabilityType">
-		<attribute name="name" type="wfl:capability" use="required" />
-		<attribute name="value" type="string" use="required" />
-	</complexType>
+	<xsd:complexType name="capabilityType">
+		<xsd:attribute name="name" type="capability" use="required" />
+		<xsd:attribute name="value" type="xsd:string" use="required" />
+	</xsd:complexType>
 
 	<!-- Rules for collaborators -->
-	<attributeGroup name="collaboratorAttributesGroup">
-		<attribute name="name" use="required">
-			<simpleType>
-				<restriction base="string">
-					<whiteSpace value="collapse" />
-				</restriction>
-			</simpleType>
-		</attribute>
-		<attribute name="email" type="string" use="required" />
-		<attribute name="home_page" type="anyURI" use="optional" />
-	</attributeGroup>
+	<xsd:attributeGroup name="collaboratorAttributesGroup">
+		<xsd:attribute name="name" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:whiteSpace value="collapse" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="email" type="xsd:string" use="required" />
+		<xsd:attribute name="home_page" type="xsd:anyURI" use="optional" />
+	</xsd:attributeGroup>
 
-	<complexType name="maintainersType">
-		<sequence>
-			<element name="maintainer" minOccurs="1" maxOccurs="unbounded">
-				<complexType>
-					<attributeGroup ref="wfl:collaboratorAttributesGroup" />
-				</complexType>
-			</element>
-		</sequence>
-	</complexType>
+	<xsd:complexType name="maintainersType">
+		<xsd:sequence>
+			<xsd:element name="maintainer" minOccurs="1" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attributeGroup ref="collaboratorAttributesGroup" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
 
-	<complexType name="authorsType">
-		<sequence>
-			<element name="author" minOccurs="1" maxOccurs="unbounded">
-				<complexType>
-					<attributeGroup ref="wfl:collaboratorAttributesGroup" />
-				</complexType>
-			</element>
-		</sequence>
-	</complexType>
+	<xsd:complexType name="authorsType">
+		<xsd:sequence>
+			<xsd:element name="author" minOccurs="1" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attributeGroup ref="collaboratorAttributesGroup" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
 
-	<complexType name="contributorsType">
-		<sequence >
-			<element name="contributor" minOccurs="1" maxOccurs="unbounded">
-				<complexType>
-					<attributeGroup ref="wfl:collaboratorAttributesGroup" />
-				</complexType>
-			</element>
-		</sequence>
-	</complexType>
+	<xsd:complexType name="contributorsType">
+		<xsd:sequence>
+			<xsd:element name="contributor" minOccurs="1" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attributeGroup ref="collaboratorAttributesGroup" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
 
 
 	<!-- Enumerations -->
-	<simpleType name="groupIds">
-		<annotation>
-			<documentation>Defines all the valid group ids for device capabilities</documentation>
-			<appinfo>Attribute id of element group enumerated values</appinfo>
-		</annotation>
-		<restriction base="string">
-			<enumeration value="bugs" />
-			<enumeration value="cache" />
-			<enumeration value="chtml_ui" />
-			<enumeration value="display" />
-			<enumeration value="drm" />
-			<enumeration value="image_format" />
-			<enumeration value="j2me" />
-			<enumeration value="markup" />
-			<enumeration value="mms" />
-			<enumeration value="object_download" />
-			<enumeration value="product_info" />
-			<enumeration value="security" />
-			<enumeration value="sms" />
-			<enumeration value="sound_format" />
-			<enumeration value="storage" />
-			<enumeration value="streaming" />
-			<enumeration value="wap_push" />
-			<enumeration value="wml_ui" />
-			<enumeration value="wta" />
-			<enumeration value="xhtml_ui" />
-			<whiteSpace value="collapse"></whiteSpace>
-		</restriction>
-	</simpleType>
+	<xsd:simpleType name="groupIds">
+		<xsd:annotation>
+			<xsd:documentation>Defines all the valid group ids for device capabilities</xsd:documentation>
+			<xsd:appinfo>Attribute id of element group enumerated values</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="bugs" />
+			<xsd:enumeration value="cache" />
+			<xsd:enumeration value="chtml_ui" />
+			<xsd:enumeration value="display" />
+			<xsd:enumeration value="drm" />
+			<xsd:enumeration value="image_format" />
+			<xsd:enumeration value="j2me" />
+			<xsd:enumeration value="markup" />
+			<xsd:enumeration value="mms" />
+			<xsd:enumeration value="object_download" />
+			<xsd:enumeration value="product_info" />
+			<xsd:enumeration value="security" />
+			<xsd:enumeration value="sms" />
+			<xsd:enumeration value="sound_format" />
+			<xsd:enumeration value="storage" />
+			<xsd:enumeration value="streaming" />
+			<xsd:enumeration value="wap_push" />
+			<xsd:enumeration value="wml_ui" />
+			<xsd:enumeration value="wta" />
+			<xsd:enumeration value="xhtml_ui" />
+			<xsd:whiteSpace value="collapse" />
+		</xsd:restriction>
+	</xsd:simpleType>
 
-	<simpleType name="capability">
-		<restriction base="string">
-			<enumeration value="aac" />
-			<enumeration value="access_key_support" />
-			<enumeration value="amr" />
-			<enumeration value="ascii_support" />
-			<enumeration value="au" />
-			<enumeration value="awb" />
-			<enumeration value="basic_authentication_support" />
-			<enumeration value="bmp" />
-			<enumeration value="brand_name" />
-			<enumeration value="break_list_of_links_with_br_element_recommended" />
-			<enumeration value="built_in_back_button_support" />
-			<enumeration value="built_in_camera" />
-			<enumeration value="built_in_recorder" />
-			<enumeration value="callericon" />
-			<enumeration value="can_skip_aligned_link_row" />
-			<enumeration value="card_title_support" />
-			<enumeration value="chtml_can_display_images_and_text_on_same_line" />
-			<enumeration value="chtml_display_accesskey" />
-			<enumeration value="chtml_displays_image_in_center" />
-			<enumeration value="chtml_make_phone_call_string" />
-			<enumeration value="chtml_table_support" />
-			<enumeration value="colors" />
-			<enumeration value="columns" />
-			<enumeration value="compactmidi" />
-			<enumeration value="connectionless_cache_operation" />
-			<enumeration value="connectionless_service_indication" />
-			<enumeration value="connectionless_service_load" />
-			<enumeration value="connectionoriented_confirmed_cache_operation" />
-			<enumeration value="connectionoriented_confirmed_service_indication" />
-			<enumeration value="connectionoriented_confirmed_service_load" />
-			<enumeration value="connectionoriented_unconfirmed_cache_operation" />
-			<enumeration value="connectionoriented_unconfirmed_service_indication" />
-			<enumeration value="connectionoriented_unconfirmed_service_load" />
-			<enumeration value="deck_prefetch_support" />
-			<enumeration value="device_claims_web_support" />
-			<enumeration value="digiplug" />
-			<enumeration value="directdownload_support" />
-			<enumeration value="doja_1_0" />
-			<enumeration value="doja_1_5" />
-			<enumeration value="doja_2_0" />
-			<enumeration value="doja_2_1" />
-			<enumeration value="doja_2_2" />
-			<enumeration value="doja_3_0" />
-			<enumeration value="doja_3_5" />
-			<enumeration value="doja_4_0" />
-			<enumeration value="downloadfun_support" />
-			<enumeration value="elective_forms_recommended" />
-			<enumeration value="emoji" />
-			<enumeration value="empty_option_value_support" />
-			<enumeration value="emptyok" />
-			<enumeration value="ems" />
-			<enumeration value="ems_imelody" />
-			<enumeration value="ems_odi" />
-			<enumeration value="ems_upi" />
-			<enumeration value="ems_variablesizedpictures" />
-			<enumeration value="ems_version" />
-			<enumeration value="epoc_bmp" />
-			<enumeration value="evrc" />
-			<enumeration value="expiration_date" />
-			<enumeration value="flash_lite" />
-			<enumeration value="flash_lite_1_1" />
-			<enumeration value="flash_lite_1_2" />
-			<enumeration value="flash_lite_2_1" />
-			<enumeration value="flash_lite_download_limit" />
-			<enumeration value="gif" />
-			<enumeration value="gif_animated" />
-			<enumeration value="gprtf" />
-			<enumeration value="greyscale" />
-			<enumeration value="has_pointing_device" />
-			<enumeration value="html_web_3_2" />
-			<enumeration value="html_web_4_0" />
-			<enumeration value="html_wi_imode_compact_generic" />
-			<enumeration value="html_wi_imode_html_1" />
-			<enumeration value="html_wi_imode_html_2" />
-			<enumeration value="html_wi_imode_html_3" />
-			<enumeration value="html_wi_imode_html_4" />
-			<enumeration value="html_wi_imode_html_5" />
-			<enumeration value="html_wi_imode_htmlx_1" />
-			<enumeration value="html_wi_imode_htmlx_1_1" />
-			<enumeration value="html_wi_oma_xhtmlmp_1_0" />
-			<enumeration value="html_wi_w3_xhtmlbasic" />
-			<enumeration value="https_detectable" />
-			<enumeration value="https_support" />
-			<enumeration value="icons_on_menu_items_support" />
-			<enumeration value="image_as_link_support" />
-			<enumeration value="imelody" />
-			<enumeration value="imode_region" />
-			<enumeration value="inline_support" />
-			<enumeration value="insert_br_element_after_widget_recommended" />
-			<enumeration value="is_wireless_device" />
-			<enumeration value="iso8859_support" />
-			<enumeration value="j2me_3dapi" />
-			<enumeration value="j2me_3gpp" />
-			<enumeration value="j2me_aac" />
-			<enumeration value="j2me_amr" />
-			<enumeration value="j2me_au" />
-			<enumeration value="j2me_audio_capture_enabled" />
-			<enumeration value="j2me_bits_per_pixel" />
-			<enumeration value="j2me_bmp" />
-			<enumeration value="j2me_bmp3" />
-			<enumeration value="j2me_btapi" />
-			<enumeration value="j2me_canvas_height" />
-			<enumeration value="j2me_canvas_width" />
-			<enumeration value="j2me_capture_image_formats" />
-			<enumeration value="j2me_cldc_1_0" />
-			<enumeration value="j2me_cldc_1_1" />
-			<enumeration value="j2me_clear_key_code" />
-			<enumeration value="j2me_datefield_broken" />
-			<enumeration value="j2me_datefield_no_accepts_null_date" />
-			<enumeration value="j2me_gif" />
-			<enumeration value="j2me_gif89a" />
-			<enumeration value="j2me_h263" />
-			<enumeration value="j2me_heap_size" />
-			<enumeration value="j2me_http" />
-			<enumeration value="j2me_https" />
-			<enumeration value="j2me_imelody" />
-			<enumeration value="j2me_jpg" />
-			<enumeration value="j2me_jtwi" />
-			<enumeration value="j2me_left_softkey_code" />
-			<enumeration value="j2me_loctapi" />
-			<enumeration value="j2me_max_jar_size" />
-			<enumeration value="j2me_max_record_store_size" />
-			<enumeration value="j2me_middle_softkey_code" />
-			<enumeration value="j2me_midi" />
-			<enumeration value="j2me_midp_1_0" />
-			<enumeration value="j2me_midp_2_0" />
-			<enumeration value="j2me_mmapi_1_0" />
-			<enumeration value="j2me_mmapi_1_1" />
-			<enumeration value="j2me_motorola_lwt" />
-			<enumeration value="j2me_mp3" />
-			<enumeration value="j2me_mp4" />
-			<enumeration value="j2me_mpeg4" />
-			<enumeration value="j2me_nokia_ui" />
-			<enumeration value="j2me_photo_capture_enabled" />
-			<enumeration value="j2me_png" />
-			<enumeration value="j2me_real8" />
-			<enumeration value="j2me_realaudio" />
-			<enumeration value="j2me_realmedia" />
-			<enumeration value="j2me_realvideo" />
-			<enumeration value="j2me_return_key_code" />
-			<enumeration value="j2me_right_softkey_code" />
-			<enumeration value="j2me_rmf" />
-			<enumeration value="j2me_screen_height" />
-			<enumeration value="j2me_screen_width" />
-			<enumeration value="j2me_select_key_code" />
-			<enumeration value="j2me_serial" />
-			<enumeration value="j2me_siemens_color_game" />
-			<enumeration value="j2me_siemens_extension" />
-			<enumeration value="j2me_socket" />
-			<enumeration value="j2me_storage_size" />
-			<enumeration value="j2me_svgt" />
-			<enumeration value="j2me_udp" />
-			<enumeration value="j2me_video_capture_enabled" />
-			<enumeration value="j2me_wav" />
-			<enumeration value="j2me_wbmp" />
-			<enumeration value="j2me_wma" />
-			<enumeration value="j2me_wmapi_1_0" />
-			<enumeration value="j2me_wmapi_1_1" />
-			<enumeration value="j2me_wmapi_2_0" />
-			<enumeration value="j2me_xmf" />
-			<enumeration value="jpg" />
-			<enumeration value="largeoperatorlogo" />
-			<enumeration value="max_deck_size" />
-			<enumeration value="max_image_height" />
-			<enumeration value="max_image_width" />
-			<enumeration value="max_length_of_password" />
-			<enumeration value="max_length_of_username" />
-			<enumeration value="max_no_of_bookmarks" />
-			<enumeration value="max_no_of_connection_settings" />
-			<enumeration value="max_object_size" />
-			<enumeration value="max_url_length_bookmark" />
-			<enumeration value="max_url_length_cached_page" />
-			<enumeration value="max_url_length_homepage" />
-			<enumeration value="max_url_length_in_requests" />
-			<enumeration value="menu_with_list_of_links_recommended" />
-			<enumeration value="menu_with_select_element_recommended" />
-			<enumeration value="midi_monophonic" />
-			<enumeration value="midi_polyphonic" />
-			<enumeration value="mld" />
-			<enumeration value="mmf" />
-			<enumeration value="mms_3gpp" />
-			<enumeration value="mms_3gpp2" />
-			<enumeration value="mms_amr" />
-			<enumeration value="mms_bmp" />
-			<enumeration value="mms_evrc" />
-			<enumeration value="mms_gif_animated" />
-			<enumeration value="mms_gif_static" />
-			<enumeration value="mms_jad" />
-			<enumeration value="mms_jar" />
-			<enumeration value="mms_jpeg_baseline" />
-			<enumeration value="mms_jpeg_progressive" />
-			<enumeration value="mms_max_frame_rate" />
-			<enumeration value="mms_max_height" />
-			<enumeration value="mms_max_size" />
-			<enumeration value="mms_max_width" />
-			<enumeration value="mms_midi_monophonic" />
-			<enumeration value="mms_midi_polyphonic" />
-			<enumeration value="mms_midi_polyphonic_voices" />
-			<enumeration value="mms_mmf" />
-			<enumeration value="mms_mp3" />
-			<enumeration value="mms_mp4" />
-			<enumeration value="mms_nokia_3dscreensaver" />
-			<enumeration value="mms_nokia_operatorlogo" />
-			<enumeration value="mms_nokia_ringingtone" />
-			<enumeration value="mms_nokia_wallpaper" />
-			<enumeration value="mms_ota_bitmap" />
-			<enumeration value="mms_png" />
-			<enumeration value="mms_qcelp" />
-			<enumeration value="mms_rmf" />
-			<enumeration value="mms_spmidi" />
-			<enumeration value="mms_symbian_install" />
-			<enumeration value="mms_vcalendar" />
-			<enumeration value="mms_vcard" />
-			<enumeration value="mms_video" />
-			<enumeration value="mms_wav" />
-			<enumeration value="mms_wbmp" />
-			<enumeration value="mms_wbxml" />
-			<enumeration value="mms_wml" />
-			<enumeration value="mms_wmlc" />
-			<enumeration value="mms_xmf" />
-			<enumeration value="model_name" />
-			<enumeration value="mp3" />
-			<enumeration value="multipart_support" />
-			<enumeration value="nokia_ringtone" />
-			<enumeration value="nokia_voice_call" />
-			<enumeration value="nokiaring" />
-			<enumeration value="nokiavcal" />
-			<enumeration value="nokiavcard" />
-			<enumeration value="numbered_menus" />
-			<enumeration value="oma_support" />
-			<enumeration value="oma_v_1_0_combined_delivery" />
-			<enumeration value="oma_v_1_0_forwardlock" />
-			<enumeration value="oma_v_1_0_separate_delivery" />
-			<enumeration value="operatorlogo" />
-			<enumeration value="opwv_wml_extensions_support" />
-			<enumeration value="opwv_xhtml_extensions_support" />
-			<enumeration value="panasonic" />
-			<enumeration value="phone_id_provided" />
-			<enumeration value="picture" />
-			<enumeration value="picture_bmp" />
-			<enumeration value="picture_colors" />
-			<enumeration value="picture_df_size_limit" />
-			<enumeration value="picture_directdownload_size_limit" />
-			<enumeration value="picture_gif" />
-			<enumeration value="picture_greyscale" />
-			<enumeration value="picture_inline_size_limit" />
-			<enumeration value="picture_jpg" />
-			<enumeration value="picture_max_height" />
-			<enumeration value="picture_max_width" />
-			<enumeration value="picture_oma_size_limit" />
-			<enumeration value="picture_png" />
-			<enumeration value="picture_preferred_height" />
-			<enumeration value="picture_preferred_width" />
-			<enumeration value="picture_resize" />
-			<enumeration value="picture_wbmp" />
-			<enumeration value="picturemessage" />
-			<enumeration value="png" />
-			<enumeration value="post_method_support" />
-			<enumeration value="preferred_markup" />
-			<enumeration value="proportional_font" />
-			<enumeration value="qcelp" />
-			<enumeration value="receiver" />
-			<enumeration value="resolution_height" />
-			<enumeration value="resolution_width" />
-			<enumeration value="ringtone" />
-			<enumeration value="ringtone_aac" />
-			<enumeration value="ringtone_amr" />
-			<enumeration value="ringtone_awb" />
-			<enumeration value="ringtone_compactmidi" />
-			<enumeration value="ringtone_df_size_limit" />
-			<enumeration value="ringtone_digiplug" />
-			<enumeration value="ringtone_directdownload_size_limit" />
-			<enumeration value="ringtone_imelody" />
-			<enumeration value="ringtone_inline_size_limit" />
-			<enumeration value="ringtone_midi_monophonic" />
-			<enumeration value="ringtone_midi_polyphonic" />
-			<enumeration value="ringtone_mmf" />
-			<enumeration value="ringtone_mp3" />
-			<enumeration value="ringtone_oma_size_limit" />
-			<enumeration value="ringtone_qcelp" />
-			<enumeration value="ringtone_rmf" />
-			<enumeration value="ringtone_spmidi" />
-			<enumeration value="ringtone_voices" />
-			<enumeration value="ringtone_wav" />
-			<enumeration value="ringtone_xmf" />
-			<enumeration value="rmf" />
-			<enumeration value="rows" />
-			<enumeration value="sagem_v1" />
-			<enumeration value="sagem_v2" />
-			<enumeration value="sckl_groupgraphic" />
-			<enumeration value="sckl_operatorlogo" />
-			<enumeration value="sckl_ringtone" />
-			<enumeration value="sckl_vcalendar" />
-			<enumeration value="sckl_vcard" />
-			<enumeration value="screensaver" />
-			<enumeration value="screensaver_bmp" />
-			<enumeration value="screensaver_colors" />
-			<enumeration value="screensaver_df_size_limit" />
-			<enumeration value="screensaver_directdownload_size_limit" />
-			<enumeration value="screensaver_gif" />
-			<enumeration value="screensaver_greyscale" />
-			<enumeration value="screensaver_inline_size_limit" />
-			<enumeration value="screensaver_jpg" />
-			<enumeration value="screensaver_max_height" />
-			<enumeration value="screensaver_max_width" />
-			<enumeration value="screensaver_oma_size_limit" />
-			<enumeration value="screensaver_png" />
-			<enumeration value="screensaver_preferred_height" />
-			<enumeration value="screensaver_preferred_width" />
-			<enumeration value="screensaver_resize" />
-			<enumeration value="screensaver_wbmp" />
-			<enumeration value="sender" />
-			<enumeration value="siemens_logo_height" />
-			<enumeration value="siemens_logo_width" />
-			<enumeration value="siemens_ota" />
-			<enumeration value="siemens_screensaver_height" />
-			<enumeration value="siemens_screensaver_width" />
-			<enumeration value="smf" />
-			<enumeration value="softkey_support" />
-			<enumeration value="sp_midi" />
-			<enumeration value="streaming_3gpp" />
-			<enumeration value="streaming_mov" />
-			<enumeration value="streaming_mp4" />
-			<enumeration value="streaming_real_media_10" />
-			<enumeration value="streaming_real_media_8" />
-			<enumeration value="streaming_real_media_9" />
-			<enumeration value="streaming_video" />
-			<enumeration value="streaming_video_acodec_aac" />
-			<enumeration value="streaming_video_acodec_aac_ltp" />
-			<enumeration value="streaming_video_acodec_amr" />
-			<enumeration value="streaming_video_acodec_awb" />
-			<enumeration value="streaming_video_max_audio_bit_rate" />
-			<enumeration value="streaming_video_max_bit_rate" />
-			<enumeration value="streaming_video_max_frame_rate" />
-			<enumeration value="streaming_video_max_video_bit_rate" />
-			<enumeration value="streaming_video_min_video_bit_rate" />
-			<enumeration value="streaming_video_qcif" />
-			<enumeration value="streaming_video_qcif_max_height" />
-			<enumeration value="streaming_video_qcif_max_width" />
-			<enumeration value="streaming_video_size_limit" />
-			<enumeration value="streaming_video_sqcif" />
-			<enumeration value="streaming_video_sqcif_max_height" />
-			<enumeration value="streaming_video_sqcif_max_width" />
-			<enumeration value="streaming_video_vcodec_h263_0" />
-			<enumeration value="streaming_video_vcodec_h263_3" />
-			<enumeration value="streaming_video_vcodec_mpeg4" />
-			<enumeration value="streaming_wmv" />
-			<enumeration value="svgt_1_1" />
-			<enumeration value="svgt_1_1_plus" />
-			<enumeration value="table_support" />
-			<enumeration value="text_imelody" />
-			<enumeration value="tiff" />
-			<enumeration value="time_to_live_support" />
-			<enumeration value="times_square_mode_support" />
-			<enumeration value="total_cache_disable_support" />
-			<enumeration value="utf8_support" />
-			<enumeration value="video" />
-			<enumeration value="video_3gpp" />
-			<enumeration value="video_3gpp2" />
-			<enumeration value="video_acodec_aac" />
-			<enumeration value="video_acodec_aac_ltp" />
-			<enumeration value="video_acodec_amr" />
-			<enumeration value="video_acodec_awb" />
-			<enumeration value="video_acodec_qcelp" />
-			<enumeration value="video_df_size_limit" />
-			<enumeration value="video_directdownload_size_limit" />
-			<enumeration value="video_inline_size_limit" />
-			<enumeration value="video_max_frame_rate" />
-			<enumeration value="video_max_height" />
-			<enumeration value="video_max_width" />
-			<enumeration value="video_mov" />
-			<enumeration value="video_mp4" />
-			<enumeration value="video_oma_size_limit" />
-			<enumeration value="video_preferred_height" />
-			<enumeration value="video_preferred_width" />
-			<enumeration value="video_qcif" />
-			<enumeration value="video_real_media_10" />
-			<enumeration value="video_real_media_8" />
-			<enumeration value="video_real_media_9" />
-			<enumeration value="video_sqcif" />
-			<enumeration value="video_vcodec_h263_0" />
-			<enumeration value="video_vcodec_h263_3" />
-			<enumeration value="video_vcodec_mpeg4" />
-			<enumeration value="video_wmv" />
-			<enumeration value="voices" />
-			<enumeration value="voicexml" />
-			<enumeration value="wallpaper" />
-			<enumeration value="wallpaper_bmp" />
-			<enumeration value="wallpaper_colors" />
-			<enumeration value="wallpaper_df_size_limit" />
-			<enumeration value="wallpaper_directdownload_size_limit" />
-			<enumeration value="wallpaper_gif" />
-			<enumeration value="wallpaper_greyscale" />
-			<enumeration value="wallpaper_inline_size_limit" />
-			<enumeration value="wallpaper_jpg" />
-			<enumeration value="wallpaper_max_height" />
-			<enumeration value="wallpaper_max_width" />
-			<enumeration value="wallpaper_oma_size_limit" />
-			<enumeration value="wallpaper_png" />
-			<enumeration value="wallpaper_preferred_height" />
-			<enumeration value="wallpaper_preferred_width" />
-			<enumeration value="wallpaper_resize" />
-			<enumeration value="wallpaper_tiff" />
-			<enumeration value="wallpaper_wbmp" />
-			<enumeration value="wap_push_support" />
-			<enumeration value="wav" />
-			<enumeration value="wbmp" />
-			<enumeration value="wizards_recommended" />
-			<enumeration value="wml_1_1" />
-			<enumeration value="wml_1_2" />
-			<enumeration value="wml_1_3" />
-			<enumeration value="wml_can_display_images_and_text_on_same_line" />
-			<enumeration value="wml_displays_image_in_center" />
-			<enumeration value="wml_make_phone_call_string" />
-			<enumeration value="wmlscript_1_0" />
-			<enumeration value="wmlscript_1_1" />
-			<enumeration value="wmlscript_1_2" />
-			<enumeration value="wmlscript_1_3" />
-			<enumeration value="wrap_mode_support" />
-			<enumeration value="wta_misc" />
-			<enumeration value="wta_pdc" />
-			<enumeration value="wta_phonebook" />
-			<enumeration value="wta_voice_call" />
-			<enumeration value="xhtml_allows_disabled_form_elements" />
-			<enumeration value="xhtml_autoexpand_select" />
-			<enumeration value="xhtml_display_accesskey" />
-			<enumeration value="xhtml_document_title_support" />
-			<enumeration value="xhtml_format_as_attribute" />
-			<enumeration value="xhtml_format_as_css_property" />
-			<enumeration value="xhtml_honors_bgcolor" />
-			<enumeration value="xhtml_make_phone_call_string" />
-			<enumeration value="xhtml_marquee_as_css_property" />
-			<enumeration value="xhtml_nowrap_mode" />
-			<enumeration value="xhtml_preferred_charset" />
-			<enumeration value="xhtml_readable_background_color1" />
-			<enumeration value="xhtml_readable_background_color2" />
-			<enumeration value="xhtml_select_as_dropdown" />
-			<enumeration value="xhtml_select_as_popup" />
-			<enumeration value="xhtml_select_as_radiobutton" />
-			<enumeration value="xhtml_support_wml2_namespace" />
-			<enumeration value="xhtml_supports_css_cell_table_coloring" />
-			<enumeration value="xhtml_supports_file_upload" />
-			<enumeration value="xhtml_supports_forms_in_table" />
-			<enumeration value="xhtml_supports_inline_input" />
-			<enumeration value="xhtml_supports_invisible_text" />
-			<enumeration value="xhtml_supports_monospace_font" />
-			<enumeration value="xhtml_supports_table_for_layout" />
-			<enumeration value="xhtml_table_support" />
-			<enumeration value="xhtmlmp_preferred_mime_type" />
-			<enumeration value="xmf" />
+	<xsd:simpleType name="capability">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="aac" />
+			<xsd:enumeration value="access_key_support" />
+			<xsd:enumeration value="amr" />
+			<xsd:enumeration value="ascii_support" />
+			<xsd:enumeration value="au" />
+			<xsd:enumeration value="awb" />
+			<xsd:enumeration value="basic_authentication_support" />
+			<xsd:enumeration value="bmp" />
+			<xsd:enumeration value="brand_name" />
+			<xsd:enumeration value="break_list_of_links_with_br_element_recommended" />
+			<xsd:enumeration value="built_in_back_button_support" />
+			<xsd:enumeration value="built_in_camera" />
+			<xsd:enumeration value="built_in_recorder" />
+			<xsd:enumeration value="callericon" />
+			<xsd:enumeration value="can_skip_aligned_link_row" />
+			<xsd:enumeration value="card_title_support" />
+			<xsd:enumeration value="chtml_can_display_images_and_text_on_same_line" />
+			<xsd:enumeration value="chtml_display_accesskey" />
+			<xsd:enumeration value="chtml_displays_image_in_center" />
+			<xsd:enumeration value="chtml_make_phone_call_string" />
+			<xsd:enumeration value="chtml_table_support" />
+			<xsd:enumeration value="colors" />
+			<xsd:enumeration value="columns" />
+			<xsd:enumeration value="compactmidi" />
+			<xsd:enumeration value="connectionless_cache_operation" />
+			<xsd:enumeration value="connectionless_service_indication" />
+			<xsd:enumeration value="connectionless_service_load" />
+			<xsd:enumeration value="connectionoriented_confirmed_cache_operation" />
+			<xsd:enumeration value="connectionoriented_confirmed_service_indication" />
+			<xsd:enumeration value="connectionoriented_confirmed_service_load" />
+			<xsd:enumeration value="connectionoriented_unconfirmed_cache_operation" />
+			<xsd:enumeration value="connectionoriented_unconfirmed_service_indication" />
+			<xsd:enumeration value="connectionoriented_unconfirmed_service_load" />
+			<xsd:enumeration value="deck_prefetch_support" />
+			<xsd:enumeration value="device_claims_web_support" />
+			<xsd:enumeration value="digiplug" />
+			<xsd:enumeration value="directdownload_support" />
+			<xsd:enumeration value="doja_1_0" />
+			<xsd:enumeration value="doja_1_5" />
+			<xsd:enumeration value="doja_2_0" />
+			<xsd:enumeration value="doja_2_1" />
+			<xsd:enumeration value="doja_2_2" />
+			<xsd:enumeration value="doja_3_0" />
+			<xsd:enumeration value="doja_3_5" />
+			<xsd:enumeration value="doja_4_0" />
+			<xsd:enumeration value="downloadfun_support" />
+			<xsd:enumeration value="elective_forms_recommended" />
+			<xsd:enumeration value="emoji" />
+			<xsd:enumeration value="empty_option_value_support" />
+			<xsd:enumeration value="emptyok" />
+			<xsd:enumeration value="ems" />
+			<xsd:enumeration value="ems_imelody" />
+			<xsd:enumeration value="ems_odi" />
+			<xsd:enumeration value="ems_upi" />
+			<xsd:enumeration value="ems_variablesizedpictures" />
+			<xsd:enumeration value="ems_version" />
+			<xsd:enumeration value="epoc_bmp" />
+			<xsd:enumeration value="evrc" />
+			<xsd:enumeration value="expiration_date" />
+			<xsd:enumeration value="flash_lite" />
+			<xsd:enumeration value="flash_lite_1_1" />
+			<xsd:enumeration value="flash_lite_1_2" />
+			<xsd:enumeration value="flash_lite_2_1" />
+			<xsd:enumeration value="flash_lite_download_limit" />
+			<xsd:enumeration value="gif" />
+			<xsd:enumeration value="gif_animated" />
+			<xsd:enumeration value="gprtf" />
+			<xsd:enumeration value="greyscale" />
+			<xsd:enumeration value="has_pointing_device" />
+			<xsd:enumeration value="html_web_3_2" />
+			<xsd:enumeration value="html_web_4_0" />
+			<xsd:enumeration value="html_wi_imode_compact_generic" />
+			<xsd:enumeration value="html_wi_imode_html_1" />
+			<xsd:enumeration value="html_wi_imode_html_2" />
+			<xsd:enumeration value="html_wi_imode_html_3" />
+			<xsd:enumeration value="html_wi_imode_html_4" />
+			<xsd:enumeration value="html_wi_imode_html_5" />
+			<xsd:enumeration value="html_wi_imode_htmlx_1" />
+			<xsd:enumeration value="html_wi_imode_htmlx_1_1" />
+			<xsd:enumeration value="html_wi_oma_xhtmlmp_1_0" />
+			<xsd:enumeration value="html_wi_w3_xhtmlbasic" />
+			<xsd:enumeration value="https_detectable" />
+			<xsd:enumeration value="https_support" />
+			<xsd:enumeration value="icons_on_menu_items_support" />
+			<xsd:enumeration value="image_as_link_support" />
+			<xsd:enumeration value="imelody" />
+			<xsd:enumeration value="imode_region" />
+			<xsd:enumeration value="inline_support" />
+			<xsd:enumeration value="insert_br_element_after_widget_recommended" />
+			<xsd:enumeration value="is_wireless_device" />
+			<xsd:enumeration value="iso8859_support" />
+			<xsd:enumeration value="j2me_3dapi" />
+			<xsd:enumeration value="j2me_3gpp" />
+			<xsd:enumeration value="j2me_aac" />
+			<xsd:enumeration value="j2me_amr" />
+			<xsd:enumeration value="j2me_au" />
+			<xsd:enumeration value="j2me_audio_capture_enabled" />
+			<xsd:enumeration value="j2me_bits_per_pixel" />
+			<xsd:enumeration value="j2me_bmp" />
+			<xsd:enumeration value="j2me_bmp3" />
+			<xsd:enumeration value="j2me_btapi" />
+			<xsd:enumeration value="j2me_canvas_height" />
+			<xsd:enumeration value="j2me_canvas_width" />
+			<xsd:enumeration value="j2me_capture_image_formats" />
+			<xsd:enumeration value="j2me_cldc_1_0" />
+			<xsd:enumeration value="j2me_cldc_1_1" />
+			<xsd:enumeration value="j2me_clear_key_code" />
+			<xsd:enumeration value="j2me_datefield_broken" />
+			<xsd:enumeration value="j2me_datefield_no_accepts_null_date" />
+			<xsd:enumeration value="j2me_gif" />
+			<xsd:enumeration value="j2me_gif89a" />
+			<xsd:enumeration value="j2me_h263" />
+			<xsd:enumeration value="j2me_heap_size" />
+			<xsd:enumeration value="j2me_http" />
+			<xsd:enumeration value="j2me_https" />
+			<xsd:enumeration value="j2me_imelody" />
+			<xsd:enumeration value="j2me_jpg" />
+			<xsd:enumeration value="j2me_jtwi" />
+			<xsd:enumeration value="j2me_left_softkey_code" />
+			<xsd:enumeration value="j2me_loctapi" />
+			<xsd:enumeration value="j2me_max_jar_size" />
+			<xsd:enumeration value="j2me_max_record_store_size" />
+			<xsd:enumeration value="j2me_middle_softkey_code" />
+			<xsd:enumeration value="j2me_midi" />
+			<xsd:enumeration value="j2me_midp_1_0" />
+			<xsd:enumeration value="j2me_midp_2_0" />
+			<xsd:enumeration value="j2me_mmapi_1_0" />
+			<xsd:enumeration value="j2me_mmapi_1_1" />
+			<xsd:enumeration value="j2me_motorola_lwt" />
+			<xsd:enumeration value="j2me_mp3" />
+			<xsd:enumeration value="j2me_mp4" />
+			<xsd:enumeration value="j2me_mpeg4" />
+			<xsd:enumeration value="j2me_nokia_ui" />
+			<xsd:enumeration value="j2me_photo_capture_enabled" />
+			<xsd:enumeration value="j2me_png" />
+			<xsd:enumeration value="j2me_real8" />
+			<xsd:enumeration value="j2me_realaudio" />
+			<xsd:enumeration value="j2me_realmedia" />
+			<xsd:enumeration value="j2me_realvideo" />
+			<xsd:enumeration value="j2me_return_key_code" />
+			<xsd:enumeration value="j2me_right_softkey_code" />
+			<xsd:enumeration value="j2me_rmf" />
+			<xsd:enumeration value="j2me_screen_height" />
+			<xsd:enumeration value="j2me_screen_width" />
+			<xsd:enumeration value="j2me_select_key_code" />
+			<xsd:enumeration value="j2me_serial" />
+			<xsd:enumeration value="j2me_siemens_color_game" />
+			<xsd:enumeration value="j2me_siemens_extension" />
+			<xsd:enumeration value="j2me_socket" />
+			<xsd:enumeration value="j2me_storage_size" />
+			<xsd:enumeration value="j2me_svgt" />
+			<xsd:enumeration value="j2me_udp" />
+			<xsd:enumeration value="j2me_video_capture_enabled" />
+			<xsd:enumeration value="j2me_wav" />
+			<xsd:enumeration value="j2me_wbmp" />
+			<xsd:enumeration value="j2me_wma" />
+			<xsd:enumeration value="j2me_wmapi_1_0" />
+			<xsd:enumeration value="j2me_wmapi_1_1" />
+			<xsd:enumeration value="j2me_wmapi_2_0" />
+			<xsd:enumeration value="j2me_xmf" />
+			<xsd:enumeration value="jpg" />
+			<xsd:enumeration value="largeoperatorlogo" />
+			<xsd:enumeration value="max_deck_size" />
+			<xsd:enumeration value="max_image_height" />
+			<xsd:enumeration value="max_image_width" />
+			<xsd:enumeration value="max_length_of_password" />
+			<xsd:enumeration value="max_length_of_username" />
+			<xsd:enumeration value="max_no_of_bookmarks" />
+			<xsd:enumeration value="max_no_of_connection_settings" />
+			<xsd:enumeration value="max_object_size" />
+			<xsd:enumeration value="max_url_length_bookmark" />
+			<xsd:enumeration value="max_url_length_cached_page" />
+			<xsd:enumeration value="max_url_length_homepage" />
+			<xsd:enumeration value="max_url_length_in_requests" />
+			<xsd:enumeration value="menu_with_list_of_links_recommended" />
+			<xsd:enumeration value="menu_with_select_element_recommended" />
+			<xsd:enumeration value="midi_monophonic" />
+			<xsd:enumeration value="midi_polyphonic" />
+			<xsd:enumeration value="mld" />
+			<xsd:enumeration value="mmf" />
+			<xsd:enumeration value="mms_3gpp" />
+			<xsd:enumeration value="mms_3gpp2" />
+			<xsd:enumeration value="mms_amr" />
+			<xsd:enumeration value="mms_bmp" />
+			<xsd:enumeration value="mms_evrc" />
+			<xsd:enumeration value="mms_gif_animated" />
+			<xsd:enumeration value="mms_gif_static" />
+			<xsd:enumeration value="mms_jad" />
+			<xsd:enumeration value="mms_jar" />
+			<xsd:enumeration value="mms_jpeg_baseline" />
+			<xsd:enumeration value="mms_jpeg_progressive" />
+			<xsd:enumeration value="mms_max_frame_rate" />
+			<xsd:enumeration value="mms_max_height" />
+			<xsd:enumeration value="mms_max_size" />
+			<xsd:enumeration value="mms_max_width" />
+			<xsd:enumeration value="mms_midi_monophonic" />
+			<xsd:enumeration value="mms_midi_polyphonic" />
+			<xsd:enumeration value="mms_midi_polyphonic_voices" />
+			<xsd:enumeration value="mms_mmf" />
+			<xsd:enumeration value="mms_mp3" />
+			<xsd:enumeration value="mms_mp4" />
+			<xsd:enumeration value="mms_nokia_3dscreensaver" />
+			<xsd:enumeration value="mms_nokia_operatorlogo" />
+			<xsd:enumeration value="mms_nokia_ringingtone" />
+			<xsd:enumeration value="mms_nokia_wallpaper" />
+			<xsd:enumeration value="mms_ota_bitmap" />
+			<xsd:enumeration value="mms_png" />
+			<xsd:enumeration value="mms_qcelp" />
+			<xsd:enumeration value="mms_rmf" />
+			<xsd:enumeration value="mms_spmidi" />
+			<xsd:enumeration value="mms_symbian_install" />
+			<xsd:enumeration value="mms_vcalendar" />
+			<xsd:enumeration value="mms_vcard" />
+			<xsd:enumeration value="mms_video" />
+			<xsd:enumeration value="mms_wav" />
+			<xsd:enumeration value="mms_wbmp" />
+			<xsd:enumeration value="mms_wbxml" />
+			<xsd:enumeration value="mms_wml" />
+			<xsd:enumeration value="mms_wmlc" />
+			<xsd:enumeration value="mms_xmf" />
+			<xsd:enumeration value="model_name" />
+			<xsd:enumeration value="mp3" />
+			<xsd:enumeration value="multipart_support" />
+			<xsd:enumeration value="nokia_ringtone" />
+			<xsd:enumeration value="nokia_voice_call" />
+			<xsd:enumeration value="nokiaring" />
+			<xsd:enumeration value="nokiavcal" />
+			<xsd:enumeration value="nokiavcard" />
+			<xsd:enumeration value="numbered_menus" />
+			<xsd:enumeration value="oma_support" />
+			<xsd:enumeration value="oma_v_1_0_combined_delivery" />
+			<xsd:enumeration value="oma_v_1_0_forwardlock" />
+			<xsd:enumeration value="oma_v_1_0_separate_delivery" />
+			<xsd:enumeration value="operatorlogo" />
+			<xsd:enumeration value="opwv_wml_extensions_support" />
+			<xsd:enumeration value="opwv_xhtml_extensions_support" />
+			<xsd:enumeration value="panasonic" />
+			<xsd:enumeration value="phone_id_provided" />
+			<xsd:enumeration value="picture" />
+			<xsd:enumeration value="picture_bmp" />
+			<xsd:enumeration value="picture_colors" />
+			<xsd:enumeration value="picture_df_size_limit" />
+			<xsd:enumeration value="picture_directdownload_size_limit" />
+			<xsd:enumeration value="picture_gif" />
+			<xsd:enumeration value="picture_greyscale" />
+			<xsd:enumeration value="picture_inline_size_limit" />
+			<xsd:enumeration value="picture_jpg" />
+			<xsd:enumeration value="picture_max_height" />
+			<xsd:enumeration value="picture_max_width" />
+			<xsd:enumeration value="picture_oma_size_limit" />
+			<xsd:enumeration value="picture_png" />
+			<xsd:enumeration value="picture_preferred_height" />
+			<xsd:enumeration value="picture_preferred_width" />
+			<xsd:enumeration value="picture_resize" />
+			<xsd:enumeration value="picture_wbmp" />
+			<xsd:enumeration value="picturemessage" />
+			<xsd:enumeration value="png" />
+			<xsd:enumeration value="post_method_support" />
+			<xsd:enumeration value="preferred_markup" />
+			<xsd:enumeration value="proportional_font" />
+			<xsd:enumeration value="qcelp" />
+			<xsd:enumeration value="receiver" />
+			<xsd:enumeration value="resolution_height" />
+			<xsd:enumeration value="resolution_width" />
+			<xsd:enumeration value="ringtone" />
+			<xsd:enumeration value="ringtone_aac" />
+			<xsd:enumeration value="ringtone_amr" />
+			<xsd:enumeration value="ringtone_awb" />
+			<xsd:enumeration value="ringtone_compactmidi" />
+			<xsd:enumeration value="ringtone_df_size_limit" />
+			<xsd:enumeration value="ringtone_digiplug" />
+			<xsd:enumeration value="ringtone_directdownload_size_limit" />
+			<xsd:enumeration value="ringtone_imelody" />
+			<xsd:enumeration value="ringtone_inline_size_limit" />
+			<xsd:enumeration value="ringtone_midi_monophonic" />
+			<xsd:enumeration value="ringtone_midi_polyphonic" />
+			<xsd:enumeration value="ringtone_mmf" />
+			<xsd:enumeration value="ringtone_mp3" />
+			<xsd:enumeration value="ringtone_oma_size_limit" />
+			<xsd:enumeration value="ringtone_qcelp" />
+			<xsd:enumeration value="ringtone_rmf" />
+			<xsd:enumeration value="ringtone_spmidi" />
+			<xsd:enumeration value="ringtone_voices" />
+			<xsd:enumeration value="ringtone_wav" />
+			<xsd:enumeration value="ringtone_xmf" />
+			<xsd:enumeration value="rmf" />
+			<xsd:enumeration value="rows" />
+			<xsd:enumeration value="sagem_v1" />
+			<xsd:enumeration value="sagem_v2" />
+			<xsd:enumeration value="sckl_groupgraphic" />
+			<xsd:enumeration value="sckl_operatorlogo" />
+			<xsd:enumeration value="sckl_ringtone" />
+			<xsd:enumeration value="sckl_vcalendar" />
+			<xsd:enumeration value="sckl_vcard" />
+			<xsd:enumeration value="screensaver" />
+			<xsd:enumeration value="screensaver_bmp" />
+			<xsd:enumeration value="screensaver_colors" />
+			<xsd:enumeration value="screensaver_df_size_limit" />
+			<xsd:enumeration value="screensaver_directdownload_size_limit" />
+			<xsd:enumeration value="screensaver_gif" />
+			<xsd:enumeration value="screensaver_greyscale" />
+			<xsd:enumeration value="screensaver_inline_size_limit" />
+			<xsd:enumeration value="screensaver_jpg" />
+			<xsd:enumeration value="screensaver_max_height" />
+			<xsd:enumeration value="screensaver_max_width" />
+			<xsd:enumeration value="screensaver_oma_size_limit" />
+			<xsd:enumeration value="screensaver_png" />
+			<xsd:enumeration value="screensaver_preferred_height" />
+			<xsd:enumeration value="screensaver_preferred_width" />
+			<xsd:enumeration value="screensaver_resize" />
+			<xsd:enumeration value="screensaver_wbmp" />
+			<xsd:enumeration value="sender" />
+			<xsd:enumeration value="siemens_logo_height" />
+			<xsd:enumeration value="siemens_logo_width" />
+			<xsd:enumeration value="siemens_ota" />
+			<xsd:enumeration value="siemens_screensaver_height" />
+			<xsd:enumeration value="siemens_screensaver_width" />
+			<xsd:enumeration value="smf" />
+			<xsd:enumeration value="softkey_support" />
+			<xsd:enumeration value="sp_midi" />
+			<xsd:enumeration value="streaming_3gpp" />
+			<xsd:enumeration value="streaming_mov" />
+			<xsd:enumeration value="streaming_mp4" />
+			<xsd:enumeration value="streaming_real_media_10" />
+			<xsd:enumeration value="streaming_real_media_8" />
+			<xsd:enumeration value="streaming_real_media_9" />
+			<xsd:enumeration value="streaming_video" />
+			<xsd:enumeration value="streaming_video_acodec_aac" />
+			<xsd:enumeration value="streaming_video_acodec_aac_ltp" />
+			<xsd:enumeration value="streaming_video_acodec_amr" />
+			<xsd:enumeration value="streaming_video_acodec_awb" />
+			<xsd:enumeration value="streaming_video_max_audio_bit_rate" />
+			<xsd:enumeration value="streaming_video_max_bit_rate" />
+			<xsd:enumeration value="streaming_video_max_frame_rate" />
+			<xsd:enumeration value="streaming_video_max_video_bit_rate" />
+			<xsd:enumeration value="streaming_video_min_video_bit_rate" />
+			<xsd:enumeration value="streaming_video_qcif" />
+			<xsd:enumeration value="streaming_video_qcif_max_height" />
+			<xsd:enumeration value="streaming_video_qcif_max_width" />
+			<xsd:enumeration value="streaming_video_size_limit" />
+			<xsd:enumeration value="streaming_video_sqcif" />
+			<xsd:enumeration value="streaming_video_sqcif_max_height" />
+			<xsd:enumeration value="streaming_video_sqcif_max_width" />
+			<xsd:enumeration value="streaming_video_vcodec_h263_0" />
+			<xsd:enumeration value="streaming_video_vcodec_h263_3" />
+			<xsd:enumeration value="streaming_video_vcodec_mpeg4" />
+			<xsd:enumeration value="streaming_wmv" />
+			<xsd:enumeration value="svgt_1_1" />
+			<xsd:enumeration value="svgt_1_1_plus" />
+			<xsd:enumeration value="table_support" />
+			<xsd:enumeration value="text_imelody" />
+			<xsd:enumeration value="tiff" />
+			<xsd:enumeration value="time_to_live_support" />
+			<xsd:enumeration value="times_square_mode_support" />
+			<xsd:enumeration value="total_cache_disable_support" />
+			<xsd:enumeration value="utf8_support" />
+			<xsd:enumeration value="video" />
+			<xsd:enumeration value="video_3gpp" />
+			<xsd:enumeration value="video_3gpp2" />
+			<xsd:enumeration value="video_acodec_aac" />
+			<xsd:enumeration value="video_acodec_aac_ltp" />
+			<xsd:enumeration value="video_acodec_amr" />
+			<xsd:enumeration value="video_acodec_awb" />
+			<xsd:enumeration value="video_acodec_qcelp" />
+			<xsd:enumeration value="video_df_size_limit" />
+			<xsd:enumeration value="video_directdownload_size_limit" />
+			<xsd:enumeration value="video_inline_size_limit" />
+			<xsd:enumeration value="video_max_frame_rate" />
+			<xsd:enumeration value="video_max_height" />
+			<xsd:enumeration value="video_max_width" />
+			<xsd:enumeration value="video_mov" />
+			<xsd:enumeration value="video_mp4" />
+			<xsd:enumeration value="video_oma_size_limit" />
+			<xsd:enumeration value="video_preferred_height" />
+			<xsd:enumeration value="video_preferred_width" />
+			<xsd:enumeration value="video_qcif" />
+			<xsd:enumeration value="video_real_media_10" />
+			<xsd:enumeration value="video_real_media_8" />
+			<xsd:enumeration value="video_real_media_9" />
+			<xsd:enumeration value="video_sqcif" />
+			<xsd:enumeration value="video_vcodec_h263_0" />
+			<xsd:enumeration value="video_vcodec_h263_3" />
+			<xsd:enumeration value="video_vcodec_mpeg4" />
+			<xsd:enumeration value="video_wmv" />
+			<xsd:enumeration value="voices" />
+			<xsd:enumeration value="voicexml" />
+			<xsd:enumeration value="wallpaper" />
+			<xsd:enumeration value="wallpaper_bmp" />
+			<xsd:enumeration value="wallpaper_colors" />
+			<xsd:enumeration value="wallpaper_df_size_limit" />
+			<xsd:enumeration value="wallpaper_directdownload_size_limit" />
+			<xsd:enumeration value="wallpaper_gif" />
+			<xsd:enumeration value="wallpaper_greyscale" />
+			<xsd:enumeration value="wallpaper_inline_size_limit" />
+			<xsd:enumeration value="wallpaper_jpg" />
+			<xsd:enumeration value="wallpaper_max_height" />
+			<xsd:enumeration value="wallpaper_max_width" />
+			<xsd:enumeration value="wallpaper_oma_size_limit" />
+			<xsd:enumeration value="wallpaper_png" />
+			<xsd:enumeration value="wallpaper_preferred_height" />
+			<xsd:enumeration value="wallpaper_preferred_width" />
+			<xsd:enumeration value="wallpaper_resize" />
+			<xsd:enumeration value="wallpaper_tiff" />
+			<xsd:enumeration value="wallpaper_wbmp" />
+			<xsd:enumeration value="wap_push_support" />
+			<xsd:enumeration value="wav" />
+			<xsd:enumeration value="wbmp" />
+			<xsd:enumeration value="wizards_recommended" />
+			<xsd:enumeration value="wml_1_1" />
+			<xsd:enumeration value="wml_1_2" />
+			<xsd:enumeration value="wml_1_3" />
+			<xsd:enumeration value="wml_can_display_images_and_text_on_same_line" />
+			<xsd:enumeration value="wml_displays_image_in_center" />
+			<xsd:enumeration value="wml_make_phone_call_string" />
+			<xsd:enumeration value="wmlscript_1_0" />
+			<xsd:enumeration value="wmlscript_1_1" />
+			<xsd:enumeration value="wmlscript_1_2" />
+			<xsd:enumeration value="wmlscript_1_3" />
+			<xsd:enumeration value="wrap_mode_support" />
+			<xsd:enumeration value="wta_misc" />
+			<xsd:enumeration value="wta_pdc" />
+			<xsd:enumeration value="wta_phonebook" />
+			<xsd:enumeration value="wta_voice_call" />
+			<xsd:enumeration value="xhtml_allows_disabled_form_elements" />
+			<xsd:enumeration value="xhtml_autoexpand_select" />
+			<xsd:enumeration value="xhtml_display_accesskey" />
+			<xsd:enumeration value="xhtml_document_title_support" />
+			<xsd:enumeration value="xhtml_format_as_attribute" />
+			<xsd:enumeration value="xhtml_format_as_css_property" />
+			<xsd:enumeration value="xhtml_honors_bgcolor" />
+			<xsd:enumeration value="xhtml_make_phone_call_string" />
+			<xsd:enumeration value="xhtml_marquee_as_css_property" />
+			<xsd:enumeration value="xhtml_nowrap_mode" />
+			<xsd:enumeration value="xhtml_preferred_charset" />
+			<xsd:enumeration value="xhtml_readable_background_color1" />
+			<xsd:enumeration value="xhtml_readable_background_color2" />
+			<xsd:enumeration value="xhtml_select_as_dropdown" />
+			<xsd:enumeration value="xhtml_select_as_popup" />
+			<xsd:enumeration value="xhtml_select_as_radiobutton" />
+			<xsd:enumeration value="xhtml_support_wml2_namespace" />
+			<xsd:enumeration value="xhtml_supports_css_cell_table_coloring" />
+			<xsd:enumeration value="xhtml_supports_file_upload" />
+			<xsd:enumeration value="xhtml_supports_forms_in_table" />
+			<xsd:enumeration value="xhtml_supports_inline_input" />
+			<xsd:enumeration value="xhtml_supports_invisible_text" />
+			<xsd:enumeration value="xhtml_supports_monospace_font" />
+			<xsd:enumeration value="xhtml_supports_table_for_layout" />
+			<xsd:enumeration value="xhtml_table_support" />
+			<xsd:enumeration value="xhtmlmp_preferred_mime_type" />
+			<xsd:enumeration value="xmf" />
 			<!-- Other constraints -->
-			<whiteSpace value="collapse" />
-		</restriction>
-	</simpleType>
-</schema>
+			<xsd:whiteSpace value="collapse" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

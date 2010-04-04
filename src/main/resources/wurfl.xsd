@@ -19,8 +19,8 @@
 	<xsd:element name="wurfl">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="version" type="versionType" minOccurs="1" maxOccurs="1" />
-				<xsd:element name="devices" type="devicesType" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="version" type="version" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="devices" type="devices" minOccurs="1" maxOccurs="1" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
@@ -29,30 +29,30 @@
 	<xsd:element name="wurfl_patch">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="devices" type="devicesType" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="devices" type="devices" minOccurs="1" maxOccurs="1" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
 
 	<!-- Type for device capabilties -->
-	<xsd:complexType name="versionType">
+	<xsd:complexType name="version">
 		<xsd:sequence>
 			<xsd:element name="ver" type="xsd:string" minOccurs="1" maxOccurs="1" />
 			<xsd:element name="last_updated" type="xsd:date" minOccurs="1" maxOccurs="1" />
 			<xsd:element name="official_url" type="xsd:anyURI" minOccurs="1" maxOccurs="1" />
-			<xsd:element name="maintainers" type="maintainersType" minOccurs="0" maxOccurs="1" />
-			<xsd:element name="authors" type="authorsType" minOccurs="0" maxOccurs="1" />
-			<xsd:element name="contributors" type="contributorsType" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="maintainers" type="maintainers" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="authors" type="authors" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="contributors" type="contributors" minOccurs="0" maxOccurs="1" />
 			<xsd:element name="statement" type="xsd:string" minOccurs="0" maxOccurs="1" />
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:complexType name="devicesType">
+	<xsd:complexType name="devices">
 		<xsd:sequence>
 			<xsd:element name="device" minOccurs="1" maxOccurs="unbounded">
 				<xsd:complexType>
 					<xsd:sequence>
-						<xsd:element name="group" type="groupType" minOccurs="0" maxOccurs="unbounded" />
+						<xsd:element name="group" type="group" minOccurs="0" maxOccurs="unbounded" />
 					</xsd:sequence>
 					<xsd:attribute name="fall_back" type="xsd:string" />
 					<xsd:attribute name="actual_device_root" type="xsd:boolean" use="optional" />
@@ -63,15 +63,15 @@
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:complexType name="groupType">
+	<xsd:complexType name="group">
 		<xsd:sequence>
-			<xsd:element name="capability" type="capabilityType" minOccurs="1" maxOccurs="unbounded" />
+			<xsd:element name="capability" type="capability" minOccurs="1" maxOccurs="unbounded" />
 		</xsd:sequence>
 		<xsd:attribute name="id" type="groupIds" use="required" />
 	</xsd:complexType>
 
-	<xsd:complexType name="capabilityType">
-		<xsd:attribute name="name" type="capability" use="required" />
+	<xsd:complexType name="capability">
+		<xsd:attribute name="name" type="capabilityNames" use="required" />
 		<xsd:attribute name="value" type="xsd:string" use="required" />
 	</xsd:complexType>
 
@@ -88,7 +88,7 @@
 		<xsd:attribute name="home_page" type="xsd:anyURI" use="optional" />
 	</xsd:attributeGroup>
 
-	<xsd:complexType name="maintainersType">
+	<xsd:complexType name="maintainers">
 		<xsd:sequence>
 			<xsd:element name="maintainer" minOccurs="1" maxOccurs="unbounded">
 				<xsd:complexType>
@@ -98,7 +98,7 @@
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:complexType name="authorsType">
+	<xsd:complexType name="authors">
 		<xsd:sequence>
 			<xsd:element name="author" minOccurs="1" maxOccurs="unbounded">
 				<xsd:complexType>
@@ -108,7 +108,7 @@
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:complexType name="contributorsType">
+	<xsd:complexType name="contributors">
 		<xsd:sequence>
 			<xsd:element name="contributor" minOccurs="1" maxOccurs="unbounded">
 				<xsd:complexType>
@@ -146,11 +146,20 @@
 			<xsd:enumeration value="wml_ui" />
 			<xsd:enumeration value="wta" />
 			<xsd:enumeration value="xhtml_ui" />
+			<xsd:enumeration value="flash_lite" />
+			<xsd:enumeration value="css" />
+			<xsd:enumeration value="transcoding" />
+			<xsd:enumeration value="rss" />
+			<xsd:enumeration value="pdf" />
+			<xsd:enumeration value="playback" />
+			<xsd:enumeration value="deprecated" />
+			<xsd:enumeration value="generic_xhtml" />
+			<xsd:enumeration value="transcoding" />
 			<xsd:whiteSpace value="collapse" />
 		</xsd:restriction>
 	</xsd:simpleType>
 
-	<xsd:simpleType name="capability">
+	<xsd:simpleType name="capabilityNames">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="aac" />
 			<xsd:enumeration value="access_key_support" />

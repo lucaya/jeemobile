@@ -5,8 +5,9 @@ import java.io.InputStream;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
-import net.lucaya.jeemobile.wurfl.jaxb.ContributorsType.Contributor;
-import net.lucaya.jeemobile.wurfl.jaxb.DevicesType.Device;
+import net.lucaya.jeemobile.wurfl.jaxb.Authors.Author;
+import net.lucaya.jeemobile.wurfl.jaxb.Contributors.Contributor;
+import net.lucaya.jeemobile.wurfl.jaxb.Devices.Device;
 
 import org.junit.Test;
 
@@ -21,14 +22,23 @@ public class UnmarshallTest {
 			Unmarshaller unmarshaller = jc.createUnmarshaller();
 			Wurfl wurfl = (Wurfl) unmarshaller.unmarshal(wurflIS);
 			
-			
-			DevicesType devices = wurfl.getDevices();
-			for (Device device : devices.getDevice()) {
+		
+			for (Device device : wurfl.getDevices().getDevice()) {
 				System.out.println(device.getUserAgent());
 			}
+
+			for(Author author: wurfl.getVersion().getAuthors().getAuthor()) {
+				System.out.format("%30s | %1s\n", author.getName(), author.getEmail());
+			}
 			
-			for(Contributor contributor: wurfl.getVersion().getContributors().getContributor()) {
-				System.out.format("%30s | %1s\n", contributor.getName(), contributor.getEmail());
+			System.out.println("------>" + wurfl.getDevices().getDevice().get(0).getId());
+			
+			for(Group group: wurfl.getDevices().getDevice().get(0).getGroup()) {
+				System.out.format("%1s\n", group.getId());
+			}
+			
+			for(Capability capability: wurfl.getDevices().getDevice().get(0).getGroup().get(0).getCapability()) {
+				System.out.format("%30s | %1s\n", capability.getName(), capability.getValue());
 			}
 			
 		}
